@@ -48,11 +48,13 @@ const phraseButton = addPhraseSection.querySelector('button');
 function handleAddPhrase() {
     // *** add the current phrase value to the character phrases
     
-    character.phrases.push(phraseInput.value);
+    if (phraseInput.value) {
+        character.phrases.push(phraseInput.value);
     
-    displayPhrases();
-    phraseInput.value = '';
-    phraseInput.focus();
+        displayPhrases();
+        phraseInput.value = '';
+        phraseInput.focus();  
+    }
 }
 
 // *** Add a click handler to the phrase button that calls handleAddPhrase
@@ -91,9 +93,6 @@ function displayPhrases() {
     // ** Create an li for each phrase and append to the list
     for (let phrase of character.phrases) {
         // eslint-disable-next-line no-empty
-        if (phraseInput.value) {
-            
-        }
         let newList = document.createElement('li');
         newList.textContent = phrase;
         phraseList.append(newList);
