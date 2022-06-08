@@ -35,7 +35,9 @@ pantsSelect.addEventListener('change', () => {
 // *** Assign the initial values of the middle select and pants select!
 function displayDesigner() {
     headSelect.value = character.head;
-    
+    middleSelect.value = character.middle;
+    pantsSelect.value = character.pants;
+    console.log(displayDesign.value);
 }
 
 // AddPhrase
