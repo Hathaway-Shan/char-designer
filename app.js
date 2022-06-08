@@ -16,20 +16,26 @@ const [headSelect, middleSelect, pantsSelect] = designSection.querySelectorAll('
 
 headSelect.addEventListener('change', () => {
     character.head = headSelect.value;
+
+    displayDesign();
+    console.log(character.head);
+});
+ // *** Complete the middle select change handler
+middleSelect.addEventListener('change', () => {
+    character.middle = middleSelect.value;
+
     displayDesign();
 });
-
-middleSelect.addEventListener('change', () => {
-    // *** Complete the middle select change handler
-});
-
+// *** Complete the pants select change handler
 pantsSelect.addEventListener('change', () => {
-    // *** Complete the pants select change handler
-});
+    character.pants = pantsSelect.value;
 
+    displayDesign();
+});
+// *** Assign the initial values of the middle select and pants select!
 function displayDesigner() {
     headSelect.value = character.head;
-    // *** Assign the initial values of the middle select and pants select!
+    
 }
 
 // AddPhrase
@@ -60,6 +66,9 @@ const [headImage, middleImage, pantsImage] = characterSection.querySelectorAll('
 
 function displayCharacter() {
     // *** Set the src properties for the three images.
+    headImage.src = 'assets/character/' + character.head + '-head.png';
+    middleImage.src = 'assets/character/' + character.middle + '-middle.png';
+    pantsImage.src = 'assets/character/' + character.pants + '-pants.png';
     // You can use:
     // 'assets/character/' + <get prop value here> + '-head.png'
     // to format the correct file name
