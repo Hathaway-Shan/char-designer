@@ -16,20 +16,26 @@ const [headSelect, middleSelect, pantsSelect] = designSection.querySelectorAll('
 
 headSelect.addEventListener('change', () => {
     character.head = headSelect.value;
+
     displayDesign();
 });
-
+ // *** Complete the middle select change handler
 middleSelect.addEventListener('change', () => {
-    // *** Complete the middle select change handler
-});
+    character.middle = middleSelect.value;
 
+    displayDesign();
+});
+// *** Complete the pants select change handler
 pantsSelect.addEventListener('change', () => {
-    // *** Complete the pants select change handler
-});
+    character.pants = pantsSelect.value;
 
+    displayDesign();
+});
+// *** Assign the initial values of the middle select and pants select!
 function displayDesigner() {
     headSelect.value = character.head;
-    // *** Assign the initial values of the middle select and pants select!
+    middleSelect.value = character.middle;
+    pantsSelect.value = character.pants;
 }
 
 // AddPhrase
@@ -37,13 +43,18 @@ const addPhraseSection = document.getElementById('add-phrase-section');
 const phraseInput = addPhraseSection.querySelector('input');
 // *** Select the button from the add phrase section
 // const phraseButton = ?;
+const phraseButton = addPhraseSection.querySelector('button');
 
 function handleAddPhrase() {
     // *** add the current phrase value to the character phrases
-
-    displayPhrases();
-    phraseInput.value = '';
-    phraseInput.focus();
+    
+    if (phraseInput.value) {
+        character.phrases.push(phraseInput.value);
+    
+        displayPhrases();
+        phraseInput.value = '';
+        phraseInput.focus();  
+    }
 }
 
 // *** Add a click handler to the phrase button that calls handleAddPhrase
@@ -54,12 +65,19 @@ phraseInput.addEventListener('keypress', (e) => {
     }
 });
 
+phraseButton.addEventListener('click', () => {
+    handleAddPhrase();
+});
+
 // Character
 const characterSection = document.getElementById('character-section');
 const [headImage, middleImage, pantsImage] = characterSection.querySelectorAll('img');
 
 function displayCharacter() {
     // *** Set the src properties for the three images.
+    headImage.src = 'assets/character/' + character.head + '-head.png';
+    middleImage.src = 'assets/character/' + character.middle + '-middle.png';
+    pantsImage.src = 'assets/character/' + character.pants + '-pants.png';
     // You can use:
     // 'assets/character/' + <get prop value here> + '-head.png'
     // to format the correct file name
@@ -73,6 +91,12 @@ function displayPhrases() {
     phraseList.innerHTML = '';
 
     // ** Create an li for each phrase and append to the list
+    for (let phrase of character.phrases) {
+        // eslint-disable-next-line no-empty
+        let newList = document.createElement('li');
+        newList.textContent = phrase;
+        phraseList.append(newList);
+    }
 }
 
 // page load actions
