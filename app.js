@@ -36,7 +36,6 @@ function displayDesigner() {
     headSelect.value = character.head;
     middleSelect.value = character.middle;
     pantsSelect.value = character.pants;
-    console.log(displayDesign);
 }
 
 // AddPhrase
@@ -50,9 +49,7 @@ function handleAddPhrase() {
     // *** add the current phrase value to the character phrases
     
     character.phrases.push(phraseInput.value);
-    phraseInput.value = '';
-    phraseInput.focus();
-
+    
     displayPhrases();
     phraseInput.value = '';
     phraseInput.focus();
@@ -64,6 +61,10 @@ phraseInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         handleAddPhrase();
     }
+});
+
+phraseButton.addEventListener('click', () => {
+    handleAddPhrase();
 });
 
 // Character
@@ -88,10 +89,14 @@ function displayPhrases() {
     phraseList.innerHTML = '';
 
     // ** Create an li for each phrase and append to the list
-    for (const phrase in phrasesSection) {
-        const li = document.createElement('li');
-        li.textContent = phrase;
-        phraseList.append('li');
+    for (let phrase of character.phrases) {
+        // eslint-disable-next-line no-empty
+        if (phraseInput.value) {
+            
+        }
+        let newList = document.createElement('li');
+        newList.textContent = phrase;
+        phraseList.append(newList);
     }
 }
 
