@@ -44,7 +44,7 @@ const addPhraseSection = document.getElementById('add-phrase-section');
 const phraseInput = addPhraseSection.querySelector('input');
 // *** Select the button from the add phrase section
 // const phraseButton = ?;
-const phraseButton = 
+const phraseButton = addPhraseSection.querySelector('button');
 
 function handleAddPhrase() {
     // *** add the current phrase value to the character phrases
